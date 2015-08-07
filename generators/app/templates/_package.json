@@ -1,5 +1,17 @@
 {
-  "name": "package",
-  "version": "0.0.0",
-  "dependencies": {}
+  "name": "WebUI",
+  "version": "0.0.1",
+  "description": "Web UI scafolding",
+  "license": "MIT",
+  "main": "webUi/server.js",
+  "repository": "Gethi/generator-wui",
+  "author": {
+    "name": "Antoine Bigard",
+    "email": "",
+    "url": "https://github.com/Gethi"
+  },
+  "dependencies": {
+  	"connect": "^3.4.0",
+    "serve-static": "^1.10.0"
+  }
 }
