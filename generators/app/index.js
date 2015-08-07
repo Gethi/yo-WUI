@@ -17,6 +17,7 @@ module.exports = yeoman.generators.Base.extend({
     notifier.notify();
 
     // `notifier.update` contains some useful info about the update
+    console.log(notifier);
     console.log(notifier.update);
 
   },
