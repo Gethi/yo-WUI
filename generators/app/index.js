@@ -2,10 +2,23 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var updateNotifier = require('update-notifier');
+
 
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
-    this.pkg = require('../package.json');
+
+    this.pkg = require('../../package.json');
+/*
+    // Checks for available update and returns an instance
+    var notifier = updateNotifier({pkg: this.pkg});
+
+    // Notify using the built-in convenience method
+    notifier.notify();
+
+    // `notifier.update` contains some useful info about the update
+    console.log(notifier.update);
+*/
   },
 
   prompting: function () {
@@ -118,6 +131,12 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('_bower.json'),
         this.destinationPath('bower.json')
       );
+      if(this.addQOject){
+        this.fs.copy(
+        this.templatePath('QObject.cpp'),
+        this.destinationPath('QObject.cpp')
+        );
+      }
     },
 
     projectfiles: function () {
@@ -133,6 +152,8 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.installDependencies();
+    this.installDependencies({
+      skipInstall: this.options['skip-install']
+    });
   }
 });
