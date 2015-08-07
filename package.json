@@ -6,7 +6,7 @@
   "main": "app/index.js",
   "repository": "Gethi/generator-wui",
   "author": {
-    "name": "",
+    "name": "Antoine Bigard",
     "email": "",
     "url": "https://github.com/Gethi"
   },
@@ -20,8 +20,9 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "yeoman-generator": "^0.19.0",
     "chalk": "^1.0.0",
+    "update-notifier": "^0.5.0",
+    "yeoman-generator": "^0.19.0",
     "yosay": "^1.0.2"
   },
   "devDependencies": {
