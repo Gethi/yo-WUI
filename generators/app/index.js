@@ -1,6 +1,5 @@
 'use strict';
 var yeoman = require('yeoman-generator');
-var mkdirp = require('mkdirp');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var updateNotifier = require('update-notifier');
