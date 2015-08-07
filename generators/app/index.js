@@ -14,10 +14,10 @@ module.exports = yeoman.generators.Base.extend({
     var notifier = updateNotifier({pkg: this.pkg});
 
     // Notify using the built-in convenience method
-    //notifier.notify();
+    notifier.notify();
 
     // `notifier.update` contains some useful info about the update
-    //console.log(notifier.update);
+    console.log(notifier.update);
 
   },
 
