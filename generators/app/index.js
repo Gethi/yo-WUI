@@ -15,11 +15,6 @@ module.exports = yeoman.generators.Base.extend({
     // Notify using the built-in convenience method
     notifier.notify();
 
-    // `notifier.update` contains some useful info about the update
-    //console.log(notifier);
-    
-    //console.log(notifier.update);
-
   },
 
   prompting: function () {
@@ -39,20 +34,7 @@ module.exports = yeoman.generators.Base.extend({
         name: 'addWUI',
         message: 'Do you need a map ?',
         default: true
-    },  
-    /*{
-      type: "input",
-      name: "phone",
-      message: "What's your phone number",
-      validate: function( value ) {
-        var pass = value.match(/^([01]{1})?[\-\.\s]?\(?(\d{3})\)?[\-\.\s]?(\d{3})[\-\.\s]?(\d{4})\s?((?:#|ext\.?\s?|x\.?\s?){1}(?:\d+)?)?$/i);
-        if (pass) {
-          return true;
-        } else {
-          return "Please enter a valid phone number";
-        }
-      }
-    },*/
+    },
     {
       type: "list",
       name: "size",
@@ -72,6 +54,19 @@ module.exports = yeoman.generators.Base.extend({
         return valid || "Please enter a number";
       },
       filter: Number
+    },
+    {
+      type: "input",
+      name: "phone",
+      message: "What's your phone number",
+      validate: function( value ) {
+        var pass = value.match(/^([01]{1})?[\-\.\s]?\(?(\d{3})\)?[\-\.\s]?(\d{3})[\-\.\s]?(\d{4})\s?((?:#|ext\.?\s?|x\.?\s?){1}(?:\d+)?)?$/i);
+        if (pass) {
+          return true;
+        } else {
+          return "Please enter a valid phone number";
+        }
+      }
     },
     {
       type: "expand",
