@@ -17,9 +17,9 @@ module.exports = yeoman.generators.Base.extend({
     notifier.notify();
 
     // `notifier.update` contains some useful info about the update
-    console.log(notifier);
+    //console.log(notifier);
     
-    console.log(notifier.update);
+    //console.log(notifier.update);
 
   },
 
@@ -40,7 +40,7 @@ module.exports = yeoman.generators.Base.extend({
         message: 'Add WebUi folder ?',
         default: true
     }
-    /*{
+    {
       type: "input",
       name: "phone",
       message: "What's your phone number",
@@ -112,7 +112,7 @@ module.exports = yeoman.generators.Base.extend({
       when: function( answers ) {
         return answers.comments !== "Nope, all good!";
       }
-    }*/];
+    }];
 
     this.prompt(prompts, function (props) {
       this.appName = props.appName;
