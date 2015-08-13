@@ -1,6 +1,6 @@
 {
   "name": "generator-wui",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
@@ -11,9 +11,7 @@
     "url": "https://github.com/Gethi"
   },
   "scripts": {
-    "test": "mocha",
-    "preinstall": "bash deploy/setup-ssh.sh",
-    "postinstall": "bash deploy/cleanup-ssh.sh"
+    "test": "mocha"
   },
   "files": [
     "generators"
