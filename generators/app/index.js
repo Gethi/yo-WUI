@@ -4,7 +4,6 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 var updateNotifier = require('update-notifier');
 
-
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
 
@@ -28,19 +27,20 @@ module.exports = yeoman.generators.Base.extend({
 
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the terrific ' + chalk.red('Adsum WebUi') + ' generator!'
+      'Welcome to the terrific ' + chalk.green('Adsum WebUi') + ' generator!'
     ));
 
     var prompts = [{
       name: 'appName',
       message: 'What is your app\'s name ?'
-    },{
+    },
+    {
         type: 'confirm',
         name: 'addWUI',
-        message: 'Add WebUi folder ?',
+        message: 'Do you need a map ?',
         default: true
-    }
-    {
+    },  
+    /*{
       type: "input",
       name: "phone",
       message: "What's your phone number",
@@ -52,12 +52,15 @@ module.exports = yeoman.generators.Base.extend({
           return "Please enter a valid phone number";
         }
       }
-    },
+    },*/
     {
       type: "list",
       name: "size",
-      message: "What size do you need",
-      choices: [ "Large", "Medium", "Small" ],
+      message: "What type of map do you want",
+      choices: [ "Adsum Qt", "Adsum Web", "VisioGlobe" ],
+      when: function( answers ) {
+        return answers.addWUI === true;
+      },
       filter: function( val ) { return val.toLowerCase(); }
     },
     {
@@ -113,14 +116,50 @@ module.exports = yeoman.generators.Base.extend({
         return answers.comments !== "Nope, all good!";
       }
     }];
+     var Updateprompt = [
+    {
+        type: 'confirm',
+        name: 'autoUpdate',
+        message: 'Do you want me to download it for you ?',
+        default: true
+    }];
 
-    this.prompt(prompts, function (props) {
-      this.appName = props.appName;
-      this.addQOject = props.addQOject;
-        console.log("\nOrder receipt:");
-      console.log( JSON.stringify(props, null, "  ") );
-      done();
-    }.bind(this));
+    var scope = this;
+
+    var childProcess = require('child_process'),ls;
+
+    ls = childProcess.exec('npm outdated generator-wui', function (error, stdout, stderr) {
+     if (error) {
+       console.log(error.stack);
+       console.log('Error code: '+error.code);
+       console.log('Signal received: '+error.signal);
+     }
+
+     if(stdout.length > 0){
+      scope.log(yosay(
+      'I\'m detecting \n' + chalk.red('an update') + '\n of the generator!'
+      ));
+      console.log('Child Process STDOUT: '+stdout);
+      scope.prompt(Updateprompt, function (props) {
+        this.appName = props.appName;
+        this.addQOject = props.addQOject;
+        done();
+      }.bind(scope));
+     } else {
+        scope.prompt(prompts, function (props) {
+          this.appName = props.appName;
+          this.addQOject = props.addQOject;
+            console.log("\nOrder receipt:");
+          console.log( JSON.stringify(props, null, "  ") );
+          done();
+        }.bind(scope));
+     }
+     //console.log('Child Process STDERR: '+stderr);
+    });
+
+     /*ls.on('exit', function (code) {
+       console.log('Child process exited with exit code '+code);
+     });*/
   },
 
   writing: {
