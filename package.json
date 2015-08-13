@@ -1,6 +1,6 @@
 {
   "name": "generator-wui",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
@@ -24,7 +24,7 @@
     "update-notifier": "^0.5.0",
     "yeoman-generator": "^0.19.0",
     "yosay": "^1.0.2",
-    "generator-wui-test" : "git@github.com:AdactiveSAS/yeoman-generator-test.git"
+    "generator-wui-test" : "git+https://da583f064a9c7339211882527303fdc0bdf63138:x-oauth-basic@github.com/AdactiveSAS/yeoman-generator-test.git"
   },
   "devDependencies": {
     "mocha": "*"
